@@ -8,7 +8,7 @@ app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/", function (req, res) {
-  res.sendFile(__dirname + "/pages/index.html");
+  res.sendFile(__dirname + "/pages/login.html");
 });
 
 app.get("/dashboard", function (req, res) {
