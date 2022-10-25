@@ -10,6 +10,9 @@
 
     <link rel="shortcut icon" href="assets/images/favicon_io/favicon-16x16.png" type="image/x-icon">
 
+    <!-- ======== Bootstrap 5 ======== -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+
     <!----======== CSS ======== -->
     <link rel="stylesheet" href="assets/css/sidebars.css">
 
@@ -109,8 +112,27 @@
 
     <section class="home">
         <div class="text">Statistic</div>
+        <div class="container-fluid text-center">
+            <h1>Temperature & Humidity</h1>
+            <p>History</p>
+            <div class="row row-cols-2">
+                <div class="col">
+                    <div class="chart-box">
+                        <canvas id="temp"></canvas>
+                    </div>
+                    <h2 class="text">Living Room Temperature</h2>
+                </div>
+                <div class="col">
+                    <div class="chart-box">
+                        <canvas id="humidity"></canvas>
+                    </div>
+                    <h2 class="text">Living Room Humidity</h2>
+                </div>
+            </div>
+        </div>
     </section>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="assets/script/mode.js"></script>
 
 </body>
