@@ -100,19 +100,19 @@
     </nav>
 
     <section class="home">
-        <div class="text">Dashboard Sidebar</div>
+        <div class="text">Dashboard</div>
         <div class="container-fluid text-center">
             <h1>Air Conditioner On</h1>
             <p>1 rooms AC is enable</p>
             <div class="row row-cols-2">
                 <div class="col">
-                    <div class="chart-box d-flex justify-content-center">
+                    <div class="chart-box">
                         <canvas id="temp"></canvas>
                     </div>
                     <h2 class="text">Living Room Temperature</h2>
                 </div>
                 <div class="col">
-                    <div class="chart-box d-flex justify-content-center">
+                    <div class="chart-box">
                         <canvas id="humidity"></canvas>
                     </div>
                     <h2 class="text">Living Room Humidity</h2>
@@ -120,35 +120,6 @@
             </div>
         </div>
     </section>
-
-    <!-- <script>
-        const body = document.querySelector('body'),
-            sidebar = body.querySelector('nav'),
-            toggle = body.querySelector(".toggle"),
-            searchBtn = body.querySelector(".search-box"),
-            modeSwitch = body.querySelector(".toggle-switch"),
-            modeText = body.querySelector(".mode-text");
-
-
-        toggle.addEventListener("click", () => {
-            sidebar.classList.toggle("close");
-        })
-
-        searchBtn.addEventListener("click", () => {
-            sidebar.classList.remove("close");
-        })
-
-        modeSwitch.addEventListener("click", () => {
-            body.classList.toggle("dark");
-
-            if (body.classList.contains("dark")) {
-                modeText.innerText = "Light mode";
-            } else {
-                modeText.innerText = "Dark mode";
-
-            }
-        });
-    </script> -->
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
