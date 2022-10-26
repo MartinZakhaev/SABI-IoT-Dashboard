@@ -3,7 +3,8 @@ const body = document.querySelector("body"),
   toggle = body.querySelector(".toggle"),
   searchBtn = body.querySelector(".search-box"),
   modeSwitch = body.querySelector(".toggle-switch"),
-  modeText = body.querySelector(".mode-text");
+  modeText = body.querySelector(".mode-text"),
+  modeChart = body.querySelector(".chart-container");
 
 toggle.addEventListener("click", () => {
   sidebar.classList.toggle("close");
@@ -15,6 +16,7 @@ searchBtn.addEventListener("click", () => {
 
 modeSwitch.addEventListener("click", () => {
   body.classList.toggle("dark");
+  modeChart.classList.toggle("dark");
 
   if (body.classList.contains("dark")) {
     modeText.innerText = "Light mode";
