@@ -101,25 +101,63 @@
     </nav>
 
     <section class="home">
-        <div class="text">Dashboard</div>
-        <div class="container-fluid text-center">
-            <h1 class="content-text">Air Conditioner On</h1>
-            <p class="content-text">1 rooms AC is enable</p>
-            <div class="row row-cols-2 my-5">
-                <div class="col">
-                    <div class="chart-box">
+        <!-- <div class="text">Dashboard</div> -->
+        <div class="text container my-5">
+            <div class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg hero-container">
+                <div class="col-lg-6 p-3 p-lg-5 pt-lg-3">
+                    <h1 class="display-4 fw-bold lh-1">Sabi Dashboard</h1>
+                    <p class="lead">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae eaque eligendi
+                        ab esse repellendus aspernatur illo facilis numquam reiciendis unde nesciunt, sit qui tempore
+                        odio amet laboriosam sequi. Maxime, dignissimos?</p>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4 mb-lg-3">
+                        <button type="button" class="btn primary-btn btn-lg px-4 me-md-2 fw-bold">AC Monitor</button>
+                        <button type="button" class="btn btn-outline-secondary btn-lg px-4">History</button>
+                    </div>
+                </div>
+                <div class="col-lg-5 p-0 mx-2 ">
+                    <lottie-player src="assets/lottie/dashboard.json" background="transparent" speed="1"
+                        style="width: 600px; height: 600px;" loop autoplay>
+                    </lottie-player>
+                    <!-- <lottie-player src="https://assets3.lottiefiles.com/private_files/lf30_ajzyv37m.json"
+                        background="transparent" speed="1" style="width: 600px; height: 600px;" loop autoplay>
+                    </lottie-player> -->
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div class="text container my-5">
+            <div class="row p-4 pb-5 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg hero-container">
+                <h1 class="content-text text-center">Air Conditioner On</h1>
+                <p class="content-text text-center">1 rooms AC is enable</p>
+                <div class="col text-center">
+                    <!-- <div class="d-flex chart-box">
                         <canvas id="temp"></canvas>
                     </div>
                     <h2 class="text">Living Room Temperature</h2>
-                </div>
-                <div class="col">
-                    <div class="chart-box">
+                    <div class="d-flex chart-box">
                         <canvas id="humidity"></canvas>
+                    </div>
+                    <h2 class="text">Living Room Humidity</h2> -->
+                    <lottie-player src="assets/lottie/status.json" background="transparent" speed="1"
+                        style="width: 600px; height: 600px;" loop autoplay>
+                    </lottie-player>
+                </div>
+                <div class="col text-center">
+                    <div class="chart-box mb-2">
+                        <canvas align="center" id="temp"></canvas>
+                    </div>
+                    <h2 class="text mb-5">Living Room Temperature</h2>
+                    <div class="chart-box mb-2">
+                        <canvas align="center" id="humidity"></canvas>
                     </div>
                     <h2 class="text">Living Room Humidity</h2>
                 </div>
             </div>
         </div>
+        <br>
     </section>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -168,6 +206,7 @@
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     <script src="assets/script/mode.js"></script>
 
 </body>

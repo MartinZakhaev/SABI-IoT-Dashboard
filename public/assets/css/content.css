@@ -34,3 +34,17 @@
   white-space: nowrap;
   opacity: 1;
 }
+
+.hero-container {
+  background-color: var(--sidebar-color);
+}
+
+.primary-btn {
+  color: #fff;
+  background-color: var(--primary-color);
+}
+
+.primary-btn:hover {
+  color: #fff;
+  background-color: #5e51e7;
+}
