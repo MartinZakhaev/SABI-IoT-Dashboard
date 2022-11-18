@@ -29,22 +29,27 @@
         <header>
             <div class="image-text">
                 <span class="image">
-                    <img src="assets/images/sabi-logo-v-purple-transparent.png" alt="Sabi logo">
+                    <a href="/dashboard">
+                        <img src="assets/images/sabi-logo-v-purple-transparent.png" alt="Sabi logo">
+                    </a>
+                    
                 </span>
 
                 <div class="text logo-text">
+                    <a href="/dashboard" style="text-decoration:none; color: black;">
                     <span class="name">Dashboard</span>
                     <span class="profession">Smart Home</span>
+                    </a>
                 </div>
             </div>
             <i class='bx bx-chevron-right toggle'></i>
         </header>
         <div class="menu-bar">
             <div class="menu">
-                <li class="search-box">
+                <!-- <li class="search-box">
                     <i class='bx bx-search icon'></i>
                     <input type="text" placeholder="Search...">
-                </li>
+                </li> -->
                 <ul class="menu-links">
                     <li class="nav-link">
                         <a href="/dashboard">
@@ -106,12 +111,10 @@
             <div class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg hero-container">
                 <div class="col-lg-6 p-3 p-lg-5 pt-lg-3">
                     <h1 class="display-4 fw-bold lh-1">Sabi Dashboard</h1>
-                    <p class="lead">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae eaque eligendi
-                        ab esse repellendus aspernatur illo facilis numquam reiciendis unde nesciunt, sit qui tempore
-                        odio amet laboriosam sequi. Maxime, dignissimos?</p>
+                    <p class="lead">SABI sebuah alat yang merupakan salah satu alternatif untuk mengontrol ruangan ber-AC (Air Conditioner) secara otomatis serta dapat di control melalui Smart phone anda, jadi anda tidak perlu lagi deh takut mematikan AC ketika berpergian!</p>
                     <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4 mb-lg-3">
-                        <button type="button" class="btn primary-btn btn-lg px-4 me-md-2 fw-bold">AC Monitor</button>
-                        <button type="button" class="btn btn-outline-secondary btn-lg px-4">History</button>
+                        <input type="button" class="btn primary-btn btn-lg px-4 me-md-2 fw-bold" onclick="location.href='#ac'" value="AC Monitor"/>
+                        <input type="button" class="btn btn-outline-secondary btn-lg px-4" onclick="location.href='/statistic'" value="History"/>
                     </div>
                 </div>
                 <div class="col-lg-5 p-0 mx-2 ">
@@ -128,7 +131,7 @@
 
 
 
-        <div class="text container my-5">
+        <div id="ac" class="text container my-5">
             <div class="row p-4 pb-5 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg hero-container">
                 <h1 class="content-text text-center">Air Conditioner On</h1>
                 <p class="content-text text-center">1 rooms AC is enable</p>
@@ -142,16 +145,16 @@
                     </div>
                     <h2 class="text">Living Room Humidity</h2> -->
                     <lottie-player src="assets/lottie/status.json" background="transparent" speed="1"
-                        style="width: 600px; height: 600px;" loop autoplay>
+                        style="width: 100%;" loop autoplay>
                     </lottie-player>
                 </div>
                 <div class="col text-center">
                     <div class="chart-box mb-2">
-                        <canvas align="center" id="temp"></canvas>
+                        <canvas align="center" id="temp" width="230%"></canvas>
                     </div>
                     <h2 class="text mb-5">Living Room Temperature</h2>
                     <div class="chart-box mb-2">
-                        <canvas align="center" id="humidity"></canvas>
+                        <canvas align="center" id="humidity" width="230%"></canvas>
                     </div>
                     <h2 class="text">Living Room Humidity</h2>
                 </div>
