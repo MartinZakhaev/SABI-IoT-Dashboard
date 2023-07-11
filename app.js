@@ -5,6 +5,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("./models/user");
 const middleware = require("./middleware/auth");
+const morgan = require("morgan");
 var moment = require("moment");
 
 const JWT_SECRET = "aseiopruqawiopfha$%^&$^%#*^%(&*@opsinvuaiosdu3209857434w";
@@ -22,6 +23,7 @@ db.once("open", function () {
 
 const app = express();
 
+app.use(morgan("common"));
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -66,12 +68,12 @@ app.post("/api/login", async function (req, res) {
     const token = jwt.sign(
       { id: user._id, username: user.username },
       JWT_SECRET,
-      { expiresIn: "1H" },
+      { expiresIn: "1H" }
     );
     return res.json({
-      status: 'Ok',
-      message: 'Authentication successful!',
-      data: token
+      status: "Ok",
+      message: "Authentication successful!",
+      data: token,
     });
     // return res.json({ status: "Ok", data: token });
   }
@@ -115,7 +117,7 @@ app.post("/api/register", async function (req, res) {
   res.json({ status: "Ok" });
 });
 
-app.listen(process.env.PORT || 3000, function () {
-  console.log('Server"s up n runnin');
+app.listen(process.env.PORT || 4000, function () {
+  console.log('Server\'s up n runnin');
   console.log(moment().format("LTS"));
 });

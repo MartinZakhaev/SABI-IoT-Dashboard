@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!-- Coding by CodingLab | www.codinglabweb.com -->
 <html lang="en">
 
 <head>
@@ -16,12 +15,67 @@
     <!----======== CSS ======== -->
     <link rel="stylesheet" href="assets/css/sidebars.css">
     <link rel="stylesheet" href="assets/css/content.css">
-    <link rel="stylesheet" href="assets/css/chart.css">
+    <!-- <link rel="stylesheet" href="assets/css/chart.css"> -->
+    <link rel="stylesheet" href="assets/css/gauge.css">
+    <link rel="stylesheet" href="assets/css/switch.css">
 
     <!----===== Boxicons CSS ===== -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
-    <!--<title>Dashboard Sidebar Menu</title>-->
+    <style>
+        .info {
+            padding: 20px;
+        }
+
+        .example {
+            overflow: auto;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.6);
+            box-sizing: border-box;
+            clear: both;
+            margin-bottom: 30px;
+        }
+
+        .example>.code,
+        .example>.display {
+            box-sizing: border-box;
+            padding: 10px;
+        }
+
+        .example>.code {}
+
+        .example>.display {
+            text-align: center;
+            overflow: auto;
+            padding: 20px 0;
+            overflow: hidden;
+        }
+
+        .example>.display {}
+
+        pre {
+            padding: 0;
+            margin: 0;
+        }
+
+        @media only screen and (min-device-width: 768px) {
+            .gauge-container {
+                width: 300px;
+                height: 250px;
+            }
+
+            .example>.code {
+                width: 65%;
+                float: left;
+            }
+
+            .example>.display {
+                width: 35%;
+                float: right;
+                padding: 10px;
+            }
+        }
+    </style>
+
 </head>
 
 <body>
@@ -32,13 +86,13 @@
                     <a href="/dashboard">
                         <img src="assets/images/sabi-logo-v-purple-transparent.png" alt="Sabi logo">
                     </a>
-                    
+
                 </span>
 
                 <div class="text logo-text">
                     <a href="/dashboard" style="text-decoration:none; color: black;">
-                    <span class="name">Dashboard</span>
-                    <span class="profession">Smart Home</span>
+                        <span class="name">Dashboard</span>
+                        <span class="profession">Smart Home</span>
                     </a>
                 </div>
             </div>
@@ -46,10 +100,6 @@
         </header>
         <div class="menu-bar">
             <div class="menu">
-                <!-- <li class="search-box">
-                    <i class='bx bx-search icon'></i>
-                    <input type="text" placeholder="Search...">
-                </li> -->
                 <ul class="menu-links">
                     <li class="nav-link">
                         <a href="/dashboard">
@@ -106,112 +156,162 @@
     </nav>
 
     <section class="home">
-        <!-- <div class="text">Dashboard</div> -->
         <div class="text container my-5">
             <div class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg hero-container">
                 <div class="col-lg-6 p-3 p-lg-5 pt-lg-3">
                     <h1 class="display-4 fw-bold lh-1">Sabi Dashboard</h1>
-                    <p class="lead">SABI sebuah alat yang merupakan salah satu alternatif untuk mengontrol ruangan ber-AC (Air Conditioner) secara otomatis serta dapat di control melalui Smart phone anda, jadi anda tidak perlu lagi deh takut mematikan AC ketika berpergian!</p>
+                    <p class="lead">SABI sebuah alat yang merupakan salah satu alternatif untuk mengontrol ruangan
+                        ber-AC (Air Conditioner) secara otomatis serta dapat di control melalui Smart phone anda, jadi
+                        anda tidak perlu lagi deh takut mematikan AC ketika berpergian!</p>
                     <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4 mb-lg-3">
-                        <input type="button" class="btn primary-btn btn-lg px-4 me-md-2 fw-bold" onclick="location.href='#ac'" value="AC Monitor"/>
-                        <input type="button" class="btn btn-outline-secondary btn-lg px-4" onclick="location.href='/statistic'" value="History"/>
+                        <input type="button" class="btn primary-btn btn-lg px-4 me-md-2 fw-bold"
+                            onclick="location.href='#ac'" value="AC Monitor" />
+                        <input type="button" class="btn btn-outline-secondary btn-lg px-4"
+                            onclick="location.href='/statistic'" value="History" />
                     </div>
                 </div>
                 <div class="col-lg-5 p-0 mx-2 ">
                     <lottie-player src="assets/lottie/dashboard.json" background="transparent" speed="1"
                         style="width: 600px; height: 600px;" loop autoplay>
                     </lottie-player>
-                    <!-- <lottie-player src="https://assets3.lottiefiles.com/private_files/lf30_ajzyv37m.json"
-                        background="transparent" speed="1" style="width: 600px; height: 600px;" loop autoplay>
-                    </lottie-player> -->
                 </div>
             </div>
         </div>
 
-
-
-
         <div id="ac" class="text container my-5">
             <div class="row p-4 pb-5 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg hero-container">
-                <h1 class="content-text text-center">Air Conditioner On</h1>
-                <p class="content-text text-center">1 rooms AC is enable</p>
-                <div class="col text-center">
-                    <!-- <div class="d-flex chart-box">
-                        <canvas id="temp"></canvas>
+                <h1 class="content-text text-center" id="ac-status">Air Conditioner On</h1>
+                <!-- <p class="content-text text-center" id="ac-monitoring"> -->
+                <div class="row d-flex justify-content-center">
+                    <div>
+                        <div class="col">
+                            <p class="content-text text-center" id="ac-monitoring">1 rooms AC is enable</p>
+                        </div>
+                        <div class="col text-center">
+                            <label class="switch">
+                                <input type="checkbox" id="ac-on-off">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
                     </div>
-                    <h2 class="text">Living Room Temperature</h2>
-                    <div class="d-flex chart-box">
-                        <canvas id="humidity"></canvas>
+                    <!-- </div> -->
+                    <!-- <p>Test</p> -->
+                    <!-- <button id="ac-on-off" class="btn btn-primary">On / Off</button> -->
+
+                    <div class="col text-center">
+                        <lottie-player src="assets/lottie/status.json" background="transparent" speed="1"
+                            style="width: 100%;" loop autoplay>
+                        </lottie-player>
                     </div>
-                    <h2 class="text">Living Room Humidity</h2> -->
-                    <lottie-player src="assets/lottie/status.json" background="transparent" speed="1"
-                        style="width: 100%;" loop autoplay>
-                    </lottie-player>
-                </div>
-                <div class="col text-center">
-                    <div class="chart-box mb-2">
-                        <canvas align="center" id="temp" width="230%"></canvas>
+                    <div class="col text-center justify-content-center">
+                        <div class="d-flex justify-content-center col">
+                            <div id="temperatureGauge" class="gauge-container three"></div>
+                        </div>
+                        <h2 class="text mb-5">Living Room Temperature <br>(&#8451;)</h2>
+                        <div class="d-flex justify-content-center col">
+                            <div id="humidityGauge" class="gauge-container three"></div>
+                        </div>
+                        <h2 class="text">Living Room Humidity <br>(&#37;)</h2>
                     </div>
-                    <h2 class="text mb-5">Living Room Temperature</h2>
-                    <div class="chart-box mb-2">
-                        <canvas align="center" id="humidity" width="230%"></canvas>
-                    </div>
-                    <h2 class="text">Living Room Humidity</h2>
                 </div>
             </div>
         </div>
         <br>
     </section>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-database.js"></script>
 
-    <script>
-        const tempData = {
-            datasets: [{
-                label: 'My First dataset',
-                backgroundColor: '#695cfe',
-                borderColor: '#695cfe',
-                data: [50],
-                cutout: '90%',
-                borderRadius: 50
-            }]
+    <script type="text/javascript" src="assets/script/gauge.js"> </script>
+    <script type="module">
+        const firebaseConfig = {
+            apiKey: "AIzaSyDEyvjK3__Knr-pkEAYgR4VTi9s4v1P-YQ",
+            authDomain: "sabi-390dd.firebaseapp.com",
+            databaseURL: "https://sabi-390dd-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "sabi-390dd",
+            storageBucket: "sabi-390dd.appspot.com",
+            messagingSenderId: "184012927316",
+            appId: "1:184012927316:web:7de392aa9835785a6f18c1",
+            measurementId: "G-5NHCMMSG6T"
         };
-        const humData = {
-            datasets: [{
-                label: 'My First dataset',
-                backgroundColor: '#695cfe',
-                borderColor: '#695cfe',
-                data: [50],
-                cutout: '90%',
-                borderRadius: 50
-            }]
-        };
-        const tempConfig = {
-            type: 'doughnut',
-            data: tempData,
-            options: {}
-        };
-        const humConfig = {
-            type: 'doughnut',
-            data: humData,
-            options: {}
-        };
-    </script>
-    <script>
-        const temp = new Chart(
-            document.getElementById('temp'),
-            tempConfig
+
+        let temperature = 0;
+        let humidity = 0;
+        let led_status = "ON";
+
+        firebase.initializeApp(firebaseConfig);
+
+        firebase.database()
+            .ref("temp")
+            .on("value", (snapshot) => {
+                temperature = snapshot.val();
+            });
+
+        firebase.database()
+            .ref("Humidity")
+            .on("value", (snapshot) => {
+                humidity = snapshot.val();
+            });
+
+        firebase.database()
+            .ref("led_status")
+            .on("value", (snapshot) => {
+                led_status = snapshot.val();
+            });
+
+        var pad = function (tar) { }
+
+        var temperatureGauge = Gauge(
+            document.getElementById("temperatureGauge"),
+            {
+                max: 100,
+                value: 50
+            }
         );
-        const humidity = new Chart(
-            document.getElementById('humidity'),
-            humConfig
-        )
-    </script>
 
+        var humidityGauge = Gauge(
+            document.getElementById("humidityGauge"),
+            {
+                max: 100,
+                value: 50
+            }
+        );
+
+        document.getElementById('ac-on-off').onclick = function () {
+            if (document.getElementById("ac-status").innerHTML === 'Air Conditioner OFF') {
+                if (document.getElementById('ac-on-off').checked == true) {
+                    firebase.database()
+                        .ref("led_status")
+                        .set('ON');
+                }
+            } else {
+                firebase.database()
+                    .ref("led_status")
+                    .set('OFF');
+            }
+        };
+
+        (function loop() {
+            document.getElementById("ac-status").innerHTML = `Air Conditioner ${led_status}`;
+            if (document.getElementById("ac-status").innerHTML === "Air Conditioner OFF") {
+                document.getElementById("ac-monitoring").innerHTML = "0 rooms AC is enable";
+            } else {
+                document.getElementById("ac-monitoring").innerHTML = "1 rooms AC is enable";
+            }
+            if (document.getElementById("ac-status").innerHTML === 'Air Conditioner ON') {
+                document.getElementById('ac-on-off').checked = true;
+            } else {
+                document.getElementById('ac-on-off').checked = false;
+            }
+            var temperaturevalue = temperature;
+            var humidityValue = humidity;
+            temperatureGauge.setValueAnimated(temperaturevalue, 1.5);
+            humidityGauge.setValueAnimated(humidityValue, 1.5);
+            window.setTimeout(loop, 200);
+        })();
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-    <script src="assets/script/mode.js"></script>
-
 </body>
 
 </html>

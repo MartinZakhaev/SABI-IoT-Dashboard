@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sabi Dashboard</title>
+
+    <link rel="shortcut icon" href="assets/images/favicon_io/favicon-16x16.png" type="image/x-icon">
+
+    <!-- ======== Bootstrap 5 ======== -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+
+    <!----======== CSS ======== -->
+    <link rel="stylesheet" href="assets/css/sidebars.css">
+    <link rel="stylesheet" href="assets/css/content.css">
+    <link rel="stylesheet" href="assets/css/chart.css">
+    <link rel="stylesheet" href="assets/css/gauge.css">
+
+    <!----===== Boxicons CSS ===== -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <!--<title>Dashboard Sidebar Menu</title>-->
+    <style>
+        .info {
+            padding: 20px;
+        }
+
+        .example {
+            overflow: auto;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.6);
+            box-sizing: border-box;
+            clear: both;
+            margin-bottom: 30px;
+        }
+
+        .example>.code,
+        .example>.display {
+            box-sizing: border-box;
+            padding: 10px;
+        }
+
+        .example>.code {}
+
+        .example>.display {
+            text-align: center;
+            overflow: auto;
+            padding: 20px 0;
+            overflow: hidden;
+        }
+
+        .example>.display {}
+
+        pre {
+            padding: 0;
+            margin: 0;
+        }
+
+        @media only screen and (min-device-width: 768px) {
+            .gauge-container {
+                width: 300px;
+                height: 250px;
+            }
+
+            .example>.code {
+                width: 65%;
+                float: left;
+            }
+
+            .example>.display {
+                width: 35%;
+                float: right;
+                padding: 10px;
+            }
+        }
+    </style>
+
+    <!-- <script type="text/javascript" src="highlight.pack.js"> </script>
+    <script>hljs.initHighlightingOnLoad();</script> -->
+</head>
+
+<body>
+    <nav class="sidebar close">
+        <header>
+            <div class="image-text">
+                <span class="image">
+                    <a href="/dashboard">
+                        <img src="assets/images/sabi-logo-v-purple-transparent.png" alt="Sabi logo">
+                    </a>
+
+                </span>
+
+                <div class="text logo-text">
+                    <a href="/dashboard" style="text-decoration:none; color: black;">
+                        <span class="name">Dashboard</span>
+                        <span class="profession">Smart Home</span>
+                    </a>
+                </div>
+            </div>
+            <i class='bx bx-chevron-right toggle'></i>
+        </header>
+        <div class="menu-bar">
+            <div class="menu">
+                <ul class="menu-links">
+                    <li class="nav-link">
+                        <a href="/dashboard">
+                            <i class='bx bx-home-alt icon'></i>
+                            <span class="text nav-text">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="/statistic">
+                            <i class='bx bx-bar-chart-alt-2 icon'></i>
+                            <span class="text nav-text">Statistic</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="/about-us">
+                            <i class='bx bx-group icon'></i>
+                            <span class="text nav-text">About Us</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="/privacy-policy">
+                            <i class='bx bx-info-circle icon'></i>
+                            <span class="text nav-text">Privacy Policy</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="bottom-content">
+                <li class="">
+                    <a href="/account">
+                        <i class='bx bxs-user-account icon'></i>
+                        <span class="text nav-text">Account</span>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="/login">
+                        <i class='bx bx-log-out icon'></i>
+                        <span class="text nav-text">Logout</span>
+                    </a>
+                </li>
+                <li class="mode">
+                    <div class="sun-moon">
+                        <i class='bx bx-moon icon moon'></i>
+                        <i class='bx bx-sun icon sun'></i>
+                    </div>
+                    <span class="mode-text text">Dark mode</span>
+
+                    <div class="toggle-switch">
+                        <span class="switch"></span>
+                    </div>
+                </li>
+            </div>
+        </div>
+    </nav>
+
+    <section class="home">
+        <!-- <div class="text">Dashboard</div> -->
+        <div class="text container my-5">
+            <div class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg hero-container">
+                <div class="col-lg-6 p-3 p-lg-5 pt-lg-3">
+                    <h1 class="display-4 fw-bold lh-1">Sabi Dashboard</h1>
+                    <p class="lead">SABI sebuah alat yang merupakan salah satu alternatif untuk mengontrol ruangan
+                        ber-AC (Air Conditioner) secara otomatis serta dapat di control melalui Smart phone anda, jadi
+                        anda tidak perlu lagi deh takut mematikan AC ketika berpergian!</p>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4 mb-lg-3">
+                        <input type="button" class="btn primary-btn btn-lg px-4 me-md-2 fw-bold"
+                            onclick="location.href='#ac'" value="AC Monitor" />
+                        <input type="button" class="btn btn-outline-secondary btn-lg px-4"
+                            onclick="location.href='/statistic'" value="History" />
+                    </div>
+                </div>
+                <div class="col-lg-5 p-0 mx-2 ">
+                    <lottie-player src="assets/lottie/dashboard.json" background="transparent" speed="1"
+                        style="width: 600px; height: 600px;" loop autoplay>
+                    </lottie-player>
+                </div>
+            </div>
+        </div>
+
+        <div id="ac" class="text container my-5">
+            <div class="row p-4 pb-5 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg hero-container">
+                <h1 class="content-text text-center">Air Conditioner On</h1>
+                <p class="content-text text-center">1 rooms AC is enable</p>
+                <div class="col text-center">
+                    <lottie-player src="assets/lottie/status.json" background="transparent" speed="1"
+                        style="width: 100%;" loop autoplay>
+                    </lottie-player>
+                </div>
+                <div class="col text-center justify-content-center">
+                    <div class="d-flex justify-content-center col">
+                        <div id="temperatureGauge" class="gauge-container three"></div>
+                    </div>
+                    <h2 class="text mb-5">Living Room Temperature <br>(&#8451;)</h2>
+                    <div class="d-flex justify-content-center col">
+                        <div id="humidityGauge" class="gauge-container three"></div>
+                    </div>
+                    <h2 class="text">Living Room Humidity <br>(&#8451;)</h2>
+                </div>
+            </div>
+        </div>
+        </div>
+        <br>
+    </section>
+
+    <script type="text/javascript" src="assets/script/gauge.js"> </script>
+    <script>
+
+        var pad = function (tar) { }
+
+        var temperatureGauge = Gauge(
+            document.getElementById("temperatureGauge"),
+            {
+                max: 100,
+                value: 50
+            }
+        );
+
+        var humidityGauge = Gauge(
+            document.getElementById("humidityGauge"),
+            {
+                max: 100,
+                value: 50
+            }
+        );
+
+        (function loop() {
+            var temperaturevalue = Math.random() * 100;
+            var humidityValue = Math.random() * 100;
+            temperatureGauge.setValueAnimated(temperaturevalue, 1.5);
+            humidityGauge.setValueAnimated(humidityValue, 1.5);
+            window.setTimeout(loop, 4000);
+        })();
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+</body>
+
+</html>

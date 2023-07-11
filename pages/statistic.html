@@ -36,8 +36,8 @@
 
                 <div class="text logo-text">
                     <a href="/dashboard" style="text-decoration:none; color: black;">
-                    <span class="name">Dashboard</span>
-                    <span class="profession">Smart Home</span>
+                        <span class="name">Dashboard</span>
+                        <span class="profession">Smart Home</span>
                     </a>
                 </div>
             </div>
@@ -136,13 +136,13 @@
                     <!-- <lottie-player src="https://assets3.lottiefiles.com/private_files/lf30_ajzyv37m.json"
                         background="transparent" speed="1" style="width: 600px; height: 600px;" loop autoplay>
                     </lottie-player> -->
-                <!-- </div>
+        <!-- </div>
             </div>
-        </div> --> 
+        </div> -->
         <div class="text container my-5">
             <div class="row p-4 pb-5 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg hero-container">
-                <h1 class="content-text text-center">Air Conditioner On</h1>
-                <p class="content-text text-center">1 rooms AC is enable</p>
+                <h1 class="content-text text-center" id="ac-status">Air Conditioner On</h1>
+                <p class="content-text text-center" id="ac-monitoring">1 rooms AC is enable</p>
                 <div class="col text-center">
                     <lottie-player src="https://assets3.lottiefiles.com/packages/lf20_dews3j6m.json"
                         background="transparent" speed="1" style="width: 600px; height: 600px;" loop autoplay>
@@ -152,82 +152,125 @@
                     <div class="chart-box mb-2">
                         <canvas align="center" id="temp"></canvas>
                     </div>
-                    <h2 class="text mb-5">Living Room Temperature</h2>
+                    <h2 class="text mb-5 fs-6">Living Room Temperature <br>(&#8451;)</h2>
                     <div class="chart-box mb-2">
                         <canvas align="center" id="humidity"></canvas>
                     </div>
-                    <h2 class="text">Living Room Humidity</h2>
+                    <h2 class="text fs-6">Living Room Humidity <br>(&#8451;)</h2>
                 </div>
             </div>
         </div>
         <br>
     </section>
 
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-database.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyDEyvjK3__Knr-pkEAYgR4VTi9s4v1P-YQ",
+            authDomain: "sabi-390dd.firebaseapp.com",
+            databaseURL: "https://sabi-390dd-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "sabi-390dd",
+            storageBucket: "sabi-390dd.appspot.com",
+            messagingSenderId: "184012927316",
+            appId: "1:184012927316:web:7de392aa9835785a6f18c1",
+            measurementId: "G-5NHCMMSG6T"
+        };
+
+        let temperature = 0;
+        let humidity = 0;
+        let led_status = "ON";
+
+        firebase.initializeApp(firebaseConfig);
+
+        firebase.database()
+            .ref("temp")
+            .on("value", (snapshot) => {
+                temperature = snapshot.val();
+            });
+
+        firebase.database()
+            .ref("Humidity")
+            .on("value", (snapshot) => {
+                humidity = snapshot.val();
+            });
+
+        firebase.database()
+            .ref("led_status")
+            .on("value", (snapshot) => {
+                led_status = snapshot.val();
+            });
+
+        const unixTimestamp = Date.now();
+        const dateObject = new Date(unixTimestamp);
+        const timestamp = dateObject.toLocaleString("en-US", { hour: "numeric", minute: "numeric" });
+
         const tempCanvas = document.getElementById('temp');
         const tempChart = new Chart(tempCanvas, {
             type: 'line',
             data: {
-                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                labels: [timestamp, timestamp, timestamp, timestamp],
                 datasets: [{
                     label: 'Temperature History',
-                    data: [12, 19, 3, 5, 2, 3],
+                    data: [Math.random() * 100, Math.random() * 100, Math.random() * 100, Math.random() * 100],
                     backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
+                        'rgb(105, 92, 254)'
                     ],
                     borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
+                        'rgb(105, 92, 254)'
                     ],
-                    borderWidth: 1
                 }]
             },
             options: {
                 scales: {
-                    y: {
-                        beginAtZero: true
-                    }
+                    // x: {
+                    //     display: true,
+                    //     title: {
+                    //         display: true,
+                    //         text: 'Timestamp',
+                    //         color: 'rgb(105, 92, 254)',
+                    //         font: {
+                    //             family: 'Times',
+                    //             size: 20,
+                    //             weight: 'normal',
+                    //             lineHeight: 1.2,
+                    //         }
+                    //     }
+                    // },
+                    // y: {
+                    //     display: true,
+                    //     title: {
+                    //         display: true,
+                    //         text: 'Temperature',
+                    //         color: 'rgb(105, 92, 254)',
+                    //         font: {
+                    //             family: 'Times', 
+                    //             size: 20,
+                    //             style: 'normal',
+                    //             lineHeight: 1.2
+                    //         }
+                    //     }
+                    // }
                 }
             }
         });
-    </script>
-    <script>
+
         const humidityCanvas = document.getElementById('humidity');
         const humidityChart = new Chart(humidityCanvas, {
             type: 'line',
             data: {
-                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                labels: [timestamp, timestamp, timestamp, timestamp],
                 datasets: [{
                     label: 'Humidity History',
-                    data: [12, 19, 3, 5, 2, 3],
+                    data: [Math.random() * 100, Math.random() * 100, Math.random() * 100, Math.random() * 100],
                     backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
+                        'rgb(105, 92, 254)'
                     ],
                     borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
+                        'rgb(105, 92, 254)'
                     ],
-                    borderWidth: 1
                 }]
             },
             options: {
@@ -238,6 +281,31 @@
                 }
             }
         });
+
+        (function loop() {
+            document.getElementById("ac-status").innerHTML = `Air Conditioner ${led_status}`;
+            if (document.getElementById("ac-status").innerHTML === "Air Conditioner OFF") {
+                document.getElementById("ac-monitoring").innerHTML = "0 rooms AC is enable";
+            } else {
+                document.getElementById("ac-monitoring").innerHTML = "1 rooms AC is enable";
+            }
+            const unixTimestamp = Date.now();
+            const dateObject = new Date(unixTimestamp);
+            const timestamp = dateObject.toLocaleString("en-US", { hour: "numeric", minute: "numeric" });
+            var temperaturevalue = temperature;
+            var humidityValue = humidity;
+            tempChart.data.datasets[0].data.push(temperaturevalue);
+            tempChart.data.datasets[0].data.splice(0, 1);
+            tempChart.data.labels.push(timestamp);
+            tempChart.data.labels.splice(0, 1);
+            tempChart.update();
+            humidityChart.data.datasets[0].data.push(humidityValue);
+            humidityChart.data.datasets[0].data.splice(0, 1);
+            humidityChart.data.labels.push(timestamp);
+            humidityChart.data.labels.splice(0, 1);
+            humidityChart.update();
+            window.setTimeout(loop, 5000);
+        })();
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
